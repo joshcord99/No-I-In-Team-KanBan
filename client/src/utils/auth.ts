@@ -4,6 +4,7 @@ import { UserData } from "../interfaces/UserData";
 class AuthService {
   getProfile() {
     // TODO: return the decoded token
+    return jwtDecode<UserData>(this.getToken());
   }
 
   loggedIn() {
