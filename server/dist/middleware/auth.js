@@ -7,13 +7,13 @@ export const authenticateToken = (req, res, next) => {
         const secretKey = process.env.JWT_SECRET_KEY || '';
         jwt.verify(token, secretKey, (err, user) => {
             if (err) {
-                return res.sendStatus(403); // Forbidden
+                return res.sendStatus(403);
             }
             req.user = user;
             return next();
         });
     }
     else {
-        res.sendStatus(401); // Unauthorized
+        res.sendStatus(401);
     }
 };
