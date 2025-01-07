@@ -1,12 +1,11 @@
-import type { UserLogin } from '../interfaces/UserLogin';
+import type { UserLogin } from "../interfaces/UserLogin";
 
 const login = async (userInfo: UserLogin) => {
   try {
-      // TODO: make a POST request to the login route
-    const response = await fetch('/auth/login', {
-      method: 'POST',
+    const response = await fetch("/auth/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(userInfo),
     });
@@ -14,20 +13,14 @@ const login = async (userInfo: UserLogin) => {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error('User information not retrieved, check network tab!');
+      throw new Error(data.message || "Login failed");
     }
 
     return data;
   } catch (err) {
-    console.log('Error from user login: ', err);
-    return Promise.reject('Could not fetch user info');
+    console.error("Error from user login: ", err);
+    return Promise.reject("Could not login user");
   }
 };
 
 export { login };
-
-
-
-
-
-
