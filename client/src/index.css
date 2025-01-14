@@ -89,12 +89,15 @@ tbody tr:nth-child(odd) {
 .nav {
   display: flex;
   padding: 1em 2em;
+  min-width: 0;
+  overflow: visible;
 }
 
 .nav ul {
   display: flex;
   margin-left: auto;
   flex-direction: row;
+  overflow: visible;
 }
 
 .nav-title {
@@ -103,6 +106,11 @@ tbody tr:nth-child(odd) {
   justify-content: center;
   font-size: larger;
   font-weight: 900;
+  position: relative;
+  left: -25px;
+  min-width: 0;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .nav-title a {
@@ -181,10 +189,11 @@ tbody tr:nth-child(odd) {
 }
 
 .form {
-  width: 60%;
+  width: 100%;
   height: 80%;
   background-color: #b864c4;
   margin: auto;
+  margin-top: -20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -194,6 +203,11 @@ tbody tr:nth-child(odd) {
 .form > h1,
 .form > label {
   color: yellow;
+}
+
+.form > h1 {
+  text-align: center;
+  width: 100%;
 }
 
 .form > input {
@@ -234,6 +248,14 @@ tbody tr:nth-child(odd) {
   width: 200px;
 }
 
+.error-message {
+  color: #ff4444;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
 .editBtn {
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -254,11 +276,89 @@ tbody tr:nth-child(odd) {
   color: #535bf2;
 }
 
+.hamburger-menu {
+  position: relative;
+  display: inline-block;
+  z-index: 9999;
+}
+
+.hamburger-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 35px;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #b864c4;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  min-width: 120px;
+  padding: 8px 0;
+  margin-top: 5px;
+}
+
+.menu-button {
+  width: 100%;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: #ff4444;
+  font-size: 14px;
+}
+
+.menu-button:hover,
+.logout-button:hover {
+  background-color: #f5f5f5;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
 .login-notice {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
+  margin-top: -20px;
 }
 
 @media (prefers-color-scheme: light) {

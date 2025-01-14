@@ -1,20 +1,29 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import auth from "../utils/auth";
+import HamburgerMenu from "./HamburgerMenu";
 
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
 
   const checkLogin = () => {
-    if (auth.loggedIn()) {
-      setLoginCheck(true);
-    }
+    const isLoggedIn = auth.loggedIn();
+    setLoginCheck(isLoggedIn);
   };
 
   useEffect(() => {
-    // loginCheck state for debugging
     checkLogin();
-  }, [loginCheck]);
+
+    const handleAuthChange = () => {
+      checkLogin();
+    };
+
+    window.addEventListener("authChange", handleAuthChange);
+
+    return () => {
+      window.removeEventListener("authChange", handleAuthChange);
+    };
+  }, []);
 
   return (
     <div className="nav">
@@ -22,22 +31,9 @@ const Navbar = () => {
         <Link to="/">No-I-In-Team-Kan-Ban</Link>
       </div>
       <ul>
-        {!loginCheck ? (
+        {loginCheck && (
           <li className="nav-item">
-            <button type="button">
-              <Link to="/login">Login</Link>
-            </button>
-          </li>
-        ) : (
-          <li className="nav-item">
-            <button
-              type="button"
-              onClick={() => {
-                auth.logout();
-              }}
-            >
-              Logout
-            </button>
+            <HamburgerMenu />
           </li>
         )}
       </ul>
