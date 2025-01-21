@@ -1,5 +1,4 @@
 import { useEffect, useState, useLayoutEffect } from "react";
-import { Link } from "react-router-dom";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
 import { retrieveTickets, deleteTicket } from "../api/ticketAPI";
