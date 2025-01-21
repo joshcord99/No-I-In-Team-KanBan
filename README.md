@@ -1,6 +1,6 @@
 # No-I-In-Team-KanBan
 
-A modern Kanban board application with JWT authentication for secure task management. Features a clean separation between landing page and dashboard functionality.
+A modern Kanban board application with JWT authentication for secure task management.
 
 ## Live Demo
 
