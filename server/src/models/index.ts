@@ -12,8 +12,16 @@ let sequelize: Sequelize;
 
 if (process.env.DB_URL) {
   try {
+    // Extract the actual URL from the psql command
+    let dbUrl = process.env.DB_URL;
+    if (dbUrl.startsWith("psql '") && dbUrl.endsWith("'")) {
+      dbUrl = dbUrl.substring(6, dbUrl.length - 1); // Remove "psql '" and "'"
+    }
+    
+    console.log("Cleaned DB_URL:", dbUrl);
+    
     // Parse the URL manually to avoid Sequelize parsing issues
-    const url = new URL(process.env.DB_URL);
+    const url = new URL(dbUrl);
     const username = url.username;
     const password = url.password;
     const host = url.hostname;
